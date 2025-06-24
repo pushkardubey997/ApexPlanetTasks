@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Web Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      color: #333;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+      text-shadow: 1px 1px #fff;
+    }
+
+    /* Carousel Section */
+    .carousel-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .carousel-image {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .carousel-buttons {
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+      background: #f7f9fb;
+    }
+
+    .carousel-buttons button {
+      padding: 10px 20px;
+      background: #2980b9;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .carousel-buttons button:hover {
+      background: #3498db;
+    }
+
+    /* Joke Section */
+    .joke-card {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .joke-card h2 {
+      margin-bottom: 15px;
+      color: #16a085;
+    }
+
+    .joke-text {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .joke-card button {
+      padding: 10px 25px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .joke-card button:hover {
+      background-color: #2ecc71;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .carousel-image {
+        height: 250px;
+      }
+
+      .joke-text {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌐 Amazing Interactive Web Page</h1>
+
+  <!-- Image Carousel -->
+  <div class="carousel-container">
+    <img id="carouselImage" class="carousel-image" src="https://via.placeholder.com/600x350?text=Scenery+1" alt="Image" />
+    <div class="carousel-buttons">
+      <button onclick="prevImage()">⬅ Previous</button>
+      <button onclick="nextImage()">Next ➡</button>
+    </div>
+  </div>
+
+  <!-- Joke Section -->
+  <div class="joke-card">
+    <h2>🤣 Random Joke Generator</h2>
+    <div id="joke" class="joke-text">Click below to get a hilarious joke!</div>
+    <button onclick="fetchJoke()">Tell Me a Joke!</button>
+  </div>
+
+  <script>
+    // Carousel Logic
+    const images = [
+      "https://via.placeholder.com/600x350/3498db/ffffff?text=Scenery+1",
+      "https://via.placeholder.com/600x350/2ecc71/ffffff?text=Scenery+2",
+      "https://via.placeholder.com/600x350/e67e22/ffffff?text=Scenery+3"
+    ];
+    let index = 0;
+
+    function showImage() {
+      const img = document.getElementById("carouselImage");
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = images[index];
+        img.style.opacity = 1;
+      }, 300);
+    }
+
+    function nextImage() {
+      index = (index + 1) % images.length;
+      showImage();
+    }
+
+    function prevImage() {
+      index = (index - 1 + images.length) % images.length;
+      showImage();
+    }
+
+    // Joke API
+    async function fetchJoke() {
+      const response = await fetch("https://official-joke-api.appspot.com/random_joke");
+      const data = await response.json();
+      document.getElementById("joke").innerHTML = 🗣 <b>${data.setup}</b><br>😂 ${data.punchline};
+    }
+  </script>
+</body>
+</html>

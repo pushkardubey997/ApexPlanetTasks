@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beautiful Web Project</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --secondary: #a5b4fc;
+      --bg: #f8fafc;
+      --card-bg: white;
+      --text: #111827;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header, footer {
+      background: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    .section {
+      padding: 3rem 1rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: var(--primary);
+    }
+
+    input, button, select {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+      border-radius: var(--radius);
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      background: #f1f5f9;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: var(--radius);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Beautiful Website</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="section" id="about">
+    <div class="card">
+      <h2>About Me</h2>
+      <p>Hello! I'm a passionate developer skilled in modern web technologies. I love building beautiful and functional web experiences.</p>
+    </div>
+  </div>
+
+  <div class="section" id="projects">
+    <div class="card">
+      <h2>To-Do App (with Local Storage)</h2>
+      <input type="text" id="todoInput" placeholder="Enter a task"/>
+      <button onclick="addTodo()">Add Task</button>
+      <ul id="todoList"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Product Listing</h2>
+      <select id="sort" onchange="sortProducts()">
+        <option value="rating">Sort by Rating</option>
+        <option value="price">Sort by Price</option>
+      </select>
+      <div id="products"></div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email: example@email.com</p>
+      <p>GitHub: github.com/example</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 My Portfolio</p>
+  </footer>
+
+  <script>
+    // To-Do App
+    const todoInput = document.getElementById('todoInput');
+    const todoList = document.getElementById('todoList');
+
+    function loadTodos() {
+      const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+      todoList.innerHTML = '';
+      todos.forEach((todo, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = ${todo} <button onclick="removeTodo(${index})">Remove</button>;
+        todoList.appendChild(li);
+      });
+    }
+
+    function addTodo() {
+      const task = todoInput.value.trim();
+      if (!task) return;
+      const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+      todos.push(task);
+      localStorage.setItem('todos', JSON.stringify(todos));
+      todoInput.value = '';
+      loadTodos();
+    }
+
+    function removeTodo(index) {
+      const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+      todos.splice(index, 1);
+      localStorage.setItem('todos', JSON.stringify(todos));
+      loadTodos();
+    }
+
+    // Product Listing
+    const products = [
+      { name: "Laptop", category: "Electronics", price: 1200, rating: 4.5 },
+      { name: "Shoes", category: "Apparel", price: 80, rating: 4.2 },
+      { name: "Smartphone", category: "Electronics", price: 999, rating: 4.7 }
+    ];
+
+    function displayProducts(items) {
+      const container = document.getElementById('products');
+      container.innerHTML = '';
+      items.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = <strong>${p.name}</strong><br/>Price: $${p.price}<br/>Rating: ${p.rating};
+        container.appendChild(div);
+      });
+    }
+
+    function sortProducts() {
+      const criteria = document.getElementById('sort').value;
+      const sorted = [...products].sort((a, b) => criteria === 'price' ? a.price - b.price : b.rating - a.rating);
+      displayProducts(sorted);
+    }
+
+    // Initialize
+    loadTodos();
+    displayProducts(products);
+  </script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Web Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #1e88e5;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .content {
+      padding: 40px;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #1e88e5;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #1e88e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1565c0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin-top: 40px;
+      background-color: #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Welcome to My Web Portfolio</h1>
+    <p>Exploring HTML, CSS, and JavaScript</p>
+  </header>
+
+  <div class="content">
+    <h2>About Me</h2>
+    <p>Hello! I'm learning web development. This is a basic webpage using HTML, styled with CSS, and made interactive with JavaScript.</p>
+
+    <h2>My Favorite Image</h2>
+    <img src="https://via.placeholder.com/600x300.png?text=My+Web+Image" alt="Sample Image">
+
+    <h2>My First Button</h2>
+    <p>Click the button to see some magic!</p>
+    <button class="btn" onclick="showMessage()">Click Me!</button>
+  </div>
+
+  <footer>
+    &copy; 2025 My Web Portfolio
+  </footer>
+
+  <script>
+    function showMessage() {
+      alert("You clicked the button! Great job using JavaScript 🎉");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechMarket - Capstone Project</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --secondary-color: #1f2937;
+      --accent-color: #10b981;
+      --background: #f3f4f6;
+      --card-bg: #ffffff;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--secondary-color);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+
+    .product-content {
+      padding: 1.5rem;
+    }
+
+    .product-content h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+    }
+
+    .product-content p {
+      font-size: 1rem;
+      color: #4b5563;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #e5e7eb;
+      font-size: 0.95rem;
+      color: #374151;
+      margin-top: 4rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .product-content p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TechMarket</h1>
+    <p>Your One-Stop Destination for Cutting-Edge Tech</p>
+  </header>
+
+  <main class="container">
+    <div class="product-card">
+      <img src="https://source.unsplash.com/600x400/?laptop,technology" alt="Laptop" />
+      <div class="product-content">
+        <h3>Ultrabook Pro</h3>
+        <p>Lightweight, blazing-fast, and ideal for productivity wherever you go.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://source.unsplash.com/600x400/?smartphone,device" alt="Smartphone" />
+      <div class="product-content">
+        <h3>SmartPhone X</h3>
+        <p>Immersive display, next-gen camera, and powerful performance in your palm.</p>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <img src="https://source.unsplash.com/600x400/?headphones,audio" alt="Headphones" />
+      <div class="product-content">
+        <h3>Noise Cancelling Headphones</h3>
+        <p>Block out distractions and dive deep into premium sound clarity and comfort.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 TechMarket. Crafted with care for performance, compatibility, and beauty.
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log("App initialized with beautiful and responsive layout.");
+    });
+  </script>
+</body>
+</html>
